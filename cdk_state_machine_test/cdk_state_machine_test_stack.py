@@ -18,6 +18,7 @@ class CdkStateMachineTestStack(cdk.Stack):
             entry=os.path.join(os.getcwd(), 'lambdas'),
             runtime=lambda_.Runtime.PYTHON_3_8
         )
+        
         get_status_lambda = PythonFunction(self, 'Status',
             handler='handler',
             index='status.py',
