@@ -5,6 +5,6 @@ def handler(event, context):
     print(context)
     print(os.environ)
 
-    event['Payload'] = "SUCCEEDED"
+    event['status'] = "SUCCEEDED"
 
     return event

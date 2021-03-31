@@ -18,7 +18,7 @@ class CdkStateMachineTestStack(cdk.Stack):
             entry=os.path.join(os.getcwd(), 'lambdas'),
             runtime=lambda_.Runtime.PYTHON_3_8
         )
-        
+
         get_status_lambda = PythonFunction(self, 'Status',
             handler='handler',
             index='status.py',
@@ -40,7 +40,6 @@ class CdkStateMachineTestStack(cdk.Stack):
             lambda_function=get_status_lambda,
             # Pass just the field named "guid" into the Lambda, put the
             # Lambda's result in a field called "status" in the response
-            input_path="$.guid",
             output_path="$.Payload"
         )
 
@@ -52,7 +51,6 @@ class CdkStateMachineTestStack(cdk.Stack):
         final_status = tasks.LambdaInvoke(self, "Get Final Job Status",
             lambda_function=get_status_lambda,
             # Use "guid" field as input
-            input_path="$.guid",
             output_path="$.Payload"
         )
 
